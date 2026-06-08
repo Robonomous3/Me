@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,22 +13,38 @@
             scroll-behavior: smooth;
         }
 
-       :root {
-    /* --bg-dark: #030712;       /* Deep executive midnight navy */
-    --bg-card: #0b1329;       /* Premium slate sapphire card base */
-    --accent-blue: #38bdf8;   /* Clean, highly accessible clear sky blue */
-    /* --accent-solid: #1d4ed8;  Authoritative corporate royal blue */
-    --text-light: #f9fafb;    /* High contrast crisp white */
-    --text-muted: #9ca3af;    /* Clean neutral reading gray */
-    --footer-bg: #010409;
-}
+        :root {
+            --bg-dark: #030014;       /* Deep obsidian space base */
+            --bg-card: rgba(11, 19, 41, 0.6); /* Translucent sapphire slate */
+            --accent-blue: #38bdf8;   /* Clean, clear sky blue */
+            --text-light: #f9fafb;    /* High contrast crisp white */
+            --text-muted: #9ca3af;    /* Clean neutral reading gray */
+            --footer-bg: #02000a;
+        }
 
         body {
             background-color: var(--bg-dark);
+            /* Rich radial background with subtle dark purples and blues */
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(127, 0, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 10% 70%, rgba(0, 191, 255, 0.05) 0%, transparent 45%);
+            background-attachment: fixed;
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* Dynamic Mouse Glow Tracker */
+        #bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(56, 189, 248, 0.04), transparent 40%);
         }
 
         /* Canvas background overlay */
@@ -57,7 +72,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 2rem;
-            background-color: rgba(4, 2, 15, 0.85);
+            background-color: rgba(3, 0, 20, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             position: fixed;
@@ -65,7 +80,7 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .logo {
@@ -112,7 +127,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-background: rgba(56, 189, 248, 0.06);
+            background: rgba(56, 189, 248, 0.06);
             color: var(--accent-blue); 
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
@@ -121,7 +136,7 @@ background: rgba(56, 189, 248, 0.06);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 1.5rem;
-border: 1px solid rgba(56, 189, 248, 0.2);        }
+            border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .status-dot {
             width: 6px;
@@ -141,8 +156,8 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .hero h1 span {
             background: linear-gradient(135deg, #ffffff, var(--accent-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
@@ -176,7 +191,7 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent-purple), #e100ff);
+            background: linear-gradient(135deg, #1d4ed8, #38bdf8);
             color: #fff;
             padding: 0.85rem 2rem;
             border: none;
@@ -186,13 +201,13 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s, transform 0.2s;
-            box-shadow: 0 4px 20px rgba(225, 0, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
         }
 
         .btn:hover {
             opacity: 0.95;
             transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(225, 0, 255, 0.4);
+            box-shadow: 0 6px 24px rgba(56, 189, 248, 0.4);
         }
 
         .btn-outline {
@@ -222,14 +237,14 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
             height: 420px;  
             border-radius: 42px;
             padding: 12px;
-            background: linear-gradient(135deg, rgba(0, 191, 255, 0.3), rgba(127, 0, 255, 0.1));
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(127, 0, 255, 0.1));
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .profile-img {
             width: 100%;
             height: 100%;
-            border-radius: 15px;
+            border-radius: 32px;
             object-fit: cover;
             display: block;
             border: 2px solid rgba(255, 255, 255, 0.1);
@@ -238,7 +253,7 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
         section {
             padding: 7rem 0;
             text-align: left;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .section-header {
@@ -250,8 +265,8 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .section-header span {
             background: linear-gradient(135deg, #ffffff, var(--accent-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .section-desc {
@@ -283,6 +298,8 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .skill-card {
             background-color: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             padding: 0.75rem 1.5rem;
             border-radius: 30px;
             font-size: 0.95rem;
@@ -293,7 +310,7 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .skill-card:hover {
             border-color: var(--accent-blue);
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(56, 189, 248, 0.1);
             transform: translateY(-2px);
         }
 
@@ -306,9 +323,11 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .card {
             background-color: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             transition: all 0.3s;
@@ -316,7 +335,9 @@ border: 1px solid rgba(56, 189, 248, 0.2);        }
 
         .card:hover {
             transform: translateY(-4px);
-border-color: rgba(56, 189, 248, 0.25);        }
+            background-color: rgba(11, 19, 41, 0.8);
+            border-color: rgba(56, 189, 248, 0.3);        
+        }
 
         .card-content {
             padding: 2rem;
@@ -346,7 +367,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            background: rgba(0, 191, 255, 0.05);
+            background: rgba(56, 189, 248, 0.1);
             padding: 0.4rem 0.8rem;
             border-radius: 4px;
             align-self: flex-start;
@@ -354,8 +375,10 @@ border-color: rgba(56, 189, 248, 0.25);        }
 
         /* Contact Box Section */
         .contact-box {
-            background: linear-gradient(135deg, #0c091f 0%, #05030d 100%);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: linear-gradient(135deg, rgba(12, 9, 31, 0.7) 0%, rgba(5, 3, 13, 0.8) 100%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 24px;
             padding: 4rem 2rem;
             text-align: center;
@@ -417,7 +440,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
         }
 
         .modal-wrapper {
-            background-color: var(--bg-card);
+            background-color: #0b1329;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
             width: 100%;
@@ -469,8 +492,8 @@ border-color: rgba(56, 189, 248, 0.25);        }
 
         .modal-header h3 span {
            background: linear-gradient(135deg, #ffffff, var(--accent-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .modal-header p {
@@ -507,7 +530,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
         .form-control:focus {
             border-color: var(--accent-blue);
             background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
         }
 
         textarea.form-control {
@@ -585,8 +608,8 @@ border-color: rgba(56, 189, 248, 0.25);        }
                 justify-content: center;
             }
             .profile-frame {
-                width: 340px;
-                height: 340px;
+                width: 300px;
+                height: 380px;
             }
             .hero h1 {
                 font-size: 2.8rem;
@@ -614,6 +637,9 @@ border-color: rgba(56, 189, 248, 0.25);        }
 </head>
 <body>
 
+    <!-- Dynamic Mouse Tracking Glow Structure -->
+    <div id="bg-glow"></div>
+
     <canvas id="bg-canvas"></canvas>
 
     <div class="container">
@@ -635,7 +661,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
                     <span class="status-dot"></span> Available for new projects
                 </div>
                 <h1>Hi, I'm <span>Abdul Momit</span></h1>
-                <p>Software Engineer crafting high-performance web solutions. I am specialize in <span id="dynamic-text"></span><span class="cursor">|</span></p>
+                <p>Software Engineer crafting high-performance web solutions. I specialize in <span id="dynamic-text"></span><span class="cursor">|</span></p>
                 
                 <div class="btn-group">
                     <a href="#projects" class="btn">View Projects</a>
@@ -712,7 +738,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
                         <div class="card-tags">Technical Writing</div>
                     </div>
                 </div>
-                <div class="card " class="card reveal-element"> <div class="card reveal-element">
+                <div class="card reveal-element">
                     <div class="card-content">
                         <h3>Photography</h3>
                         <p>Exploring geometry arrays, spatial framing, landscape color grading, and urban structural captures.</p>
@@ -783,7 +809,36 @@ border-color: rgba(56, 189, 248, 0.25);        }
     </footer>
 
     <script>
-        // --- 1. GEOMETRIC PARTICLE ENGINE ---
+        // --- FIXED INTERSECTION OBSERVER RIG (Fixes broken cut-off script) ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const targetCards = document.querySelectorAll('.reveal-element');
+            
+            const observerSettings = {
+                root: null,
+                threshold: 0.08,
+                rootMargin: "0px 0px -40px 0px"
+            };
+
+            const revealCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(revealCallback, observerSettings);
+            targetCards.forEach(card => observer.observe(card));
+        });
+
+        // --- NEW MOUSE GLOW TRACKER INTERACTION ---
+        window.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+        });
+
+        // --- GEOMETRIC PARTICLE ENGINE ---
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -812,7 +867,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 191, 255, 0.4)';
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
                 ctx.fill();
             }
         }
@@ -838,7 +893,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(127, 0, 255, ${0.15 * (1 - dist / 120)})`;
+                        ctx.strokeStyle = `rgba(127, 0, 255, ${0.12 * (1 - dist / 120)})`;
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
@@ -853,9 +908,8 @@ border-color: rgba(56, 189, 248, 0.25);        }
         }
         animate();
 
-
-        // --- 2. TYPEWRITER CAROUSEL EFFECT ---
-        const phrases = ["Modern UI/UX", "js", "Next.js", "MongodB"];
+        // --- TYPEWRITER CAROUSEL EFFECT ---
+        const phrases = ["Modern UI/UX Designs", "Robust API Infrastructures", "Next.js Frameworks", "Full-Stack Engineering"];
         let phraseIndex = 0;
         let letterIndex = 0;
         let isDeleting = false;
@@ -890,8 +944,7 @@ border-color: rgba(56, 189, 248, 0.25);        }
             setTimeout(typeEffect, 500);
         });
 
-
-        // --- 3. MODAL CONTROLLER & INTERACTION RIG ---
+        // --- MODAL CONTROLLER ---
         const modal = document.getElementById('contact-modal');
         const triggers = document.querySelectorAll('.contact-trigger');
         const closeBtn = document.getElementById('close-modal-btn');
@@ -937,36 +990,6 @@ border-color: rgba(56, 189, 248, 0.25);        }
             e.preventDefault();
             formContainer.style.display = "none";
             successContainer.style.display = "block";
-        });
-
-
-        // --- 4. HIGH-PERFORMANCE INTERSECTION OBSERVER ENGINE ---
-        document.addEventListener("DOMContentLoaded", () => {
-            const targetCards = document.querySelectorAll('.reveal-element');
-            
-            const observerSettings = {
-                root: null, // Relative directly to the viewport threshold box
-                threshold: 0.08, // Fire immediately when 8% of card intersects bounds
-                rootMargin: "0px 0px -40px 0px" // Slight bottom offset prevents premature cuts
-            };
-
-            const revealCallback = (entries, observer) => {
-                entries.forEach((entry, idx) => {
-                    if (entry.isIntersecting) {
-                        const cardNode = entry.target;
-                        
-                        // Enforce staggered delay parsing based on index properties
-                        cardNode.style.transitionDelay = `${idx % 4 * 70}ms`;
-                        cardNode.classList.add('revealed');
-                        
-                        // Cease tracking node to free layout thread space natively
-                        observer.unobserve(cardNode);
-                    }
-                });
-            };
-
-            const scrollEngine = new IntersectionObserver(revealCallback, observerSettings);
-            targetCards.forEach(card => scrollEngine.observe(card));
         });
     </script>
 </body>
